@@ -33,12 +33,12 @@ namespace book_project.Controllers
             var data = brepository.GetByCategory(catid);
             return Ok(data);
         }
-        /*[HttpGet]
-        public IHttpActionResult Get(string ISBN)
+        [HttpGet]
+        public IHttpActionResult Get1(string ISBN)
         {
             var data = brepository.GetByISBN(ISBN);
             return Ok(data);
-        }*/
+        }
         [HttpPost]
         public IHttpActionResult Post(Book book)
         {

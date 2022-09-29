@@ -68,9 +68,9 @@ namespace book_project.Models
             return list;
         }
 
-        public Book GetByCategory(int bcatid)
+        public List<Book> GetByCategory(int bcatid)
         {
-           
+            List<Book> list = new List<Book>();
             comm.CommandText = "select * from book where CategoryId="+bcatid;
             comm.Connection = conn;
             conn.Open();
@@ -87,11 +87,11 @@ namespace book_project.Models
                 string Position = reader["Position"].ToString();
                 string Status = reader["Status"].ToString();
                 string Image = reader["Image"].ToString();
-                Book book=new Book(bookid, catid, title, ISBN, year, price, Description, Position,Status,Image);
-                return book;
+                list.Add(new Book(bookid, catid, title, ISBN, year, price, Description, Position,Status,Image));
+                
             }
             conn.Close();
-            return null;
+            return list;
         }
 
         public Book GetByISBN(string bISBN)

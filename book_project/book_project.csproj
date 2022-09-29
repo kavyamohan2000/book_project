@@ -158,16 +158,33 @@
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Models\AdminSqlImpl.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookSqlImpl.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategorySqlImpl.cs" />
     <Compile Include="Models\IBookRepository.cs" />
     <Compile Include="Models\ICategoryRepository.cs" />
+    <Compile Include="Models\IAdminRepositoy.cs" />
+    <Compile Include="Models\IOrderRepository.cs" />
+    <Compile Include="Models\IUserRepository.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderedBookList.cs" />
+    <Compile Include="Models\OrderSqlImpl.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserSqlImpl.cs" />
+    <Compile Include="Models\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -223,8 +240,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Book\" />
     <Folder Include="Views\Category\" />
+    <Folder Include="Views\Order\" />
+    <Folder Include="Views\Register\" />
+    <Folder Include="Views\UserLogin\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

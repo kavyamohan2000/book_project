@@ -11,7 +11,7 @@ namespace book_project.Models
         List<Book> GetAll();
         Book GetByTitle(string title);
         Book GetByISBN(string ISBN);
-        Book GetByCategory(int catid);
+        List<Book> GetByCategory(int catid);
         Book AddBook(Book book);
         void DeleteBook(int bookid);
         void UpdateBook(Book book);
