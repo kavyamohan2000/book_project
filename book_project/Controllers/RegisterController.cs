@@ -18,9 +18,9 @@ namespace book_project.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult Post(User user)
+        public IHttpActionResult Post(User user,string address)
         {
-            var data = rrepository.RegisterUser(user);
+            var data = rrepository.RegisterUser(user,address);
             return Ok(data);
         }
 

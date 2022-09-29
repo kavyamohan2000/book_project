@@ -18,7 +18,7 @@ namespace book_project.Models
             conn = new SqlConnection(ConfigurationManager.ConnectionStrings["mydb"].ConnectionString);
             comm = new SqlCommand();
         }
-        
+
 
         public List<User> GetAll()
         {
@@ -58,10 +58,10 @@ namespace book_project.Models
             conn.Close();
             return null;
         }
-        public User GetLogin(int id,string pswd)
+        public User GetLogin(int id, string pswd)
         {
 
-            comm.CommandText = "select * from [user] where UserId=" + id+"and Password='"+pswd+"'";
+            comm.CommandText = "select * from [user] where UserId=" + id + "and Password='" + pswd + "'";
             comm.Connection = conn;
             conn.Open();
             SqlDataReader reader = comm.ExecuteReader();
@@ -79,9 +79,9 @@ namespace book_project.Models
         }
 
 
-        public User RegisterUser(User user)
+        public User RegisterUser(User user,string address)
         {
-            comm.CommandText = "insert into [user] values(" + user.UserId + ",'" + user.Password + "','" + user.Status + "','" + user.Name + "')";
+            comm.CommandText = "insert into [user] values(" + user.UserId + ",'" + user.Password + "','" + user.Status + "','" + user.Name + "'); insert into [address] values("+user.UserId+",'"+address+"');";
             comm.Connection = conn;
             conn.Open();
             int rows = comm.ExecuteNonQuery();
@@ -95,10 +95,10 @@ namespace book_project.Models
             }
         }
 
-        
+
         public void AddToWishList(int uid, int bid)
         {
-            comm.CommandText = "insert into WishList values("+bid+","+uid+")";
+            comm.CommandText = "insert into WishList values(" + bid + "," + uid + ")";
             comm.Connection = conn;
             conn.Open();
             comm.ExecuteNonQuery();
@@ -125,7 +125,7 @@ namespace book_project.Models
                 string Status = reader["Status"].ToString();
                 string Image = reader["Image"].ToString();
                 list.Add(new Book(bookid, catid, title, ISBN, year, price, Description, Position, Status, Image));
-               
+
             }
             conn.Close();
             return list;
@@ -163,6 +163,32 @@ namespace book_project.Models
             }
             conn.Close();
             return list;
+        }
+
+        public Address GetShippingAddress(int id)
+        {
+            comm.CommandText = "select useraddress from Address where userid=" + id;
+            comm.Connection = conn;
+            conn.Open();
+            SqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                string adrs = reader["useraddress"].ToString();
+                Address address = new Address(id, adrs);
+                return address;
+            }
+            conn.Close();
+            return null;
+        }
+
+        public void EditShippingAddress(int id, string address)
+        {
+            comm.CommandText = "update [address] set useraddress='" + address + "' where userid=" + id;
+            comm.Connection = conn;
+            conn.Open();
+            comm.ExecuteNonQuery();
+            conn.Close();
+
         }
     }
 }

@@ -8,7 +8,7 @@ namespace book_project.Models
 {
     internal interface IUserRepository
     {
-         User RegisterUser(User user);
+         User RegisterUser(User user,string address);
         
         List<User> GetAll();
         User GetById(int id);
@@ -18,6 +18,8 @@ namespace book_project.Models
         void AddToCart(int uid, int bid);
         List<Book> ViewCart(int id);
         User GetLogin(int id, string password);
+        Address GetShippingAddress(int id);
+        void EditShippingAddress(int id,string add);
 
 
     }

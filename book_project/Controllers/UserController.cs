@@ -39,7 +39,12 @@ namespace book_project.Controllers
             var data = urepository.ViewCart(userid);
             return Ok(data);
         }
-        
+        [HttpGet]
+        public IHttpActionResult GetAddress(int adid)
+        {
+            var data = urepository.GetShippingAddress(adid);
+            return Ok(data);
+        }
         [HttpPost]
         public IHttpActionResult Post(int uid,int bid)
         {
@@ -53,7 +58,12 @@ namespace book_project.Controllers
             urepository.AddToCart(userid, bookid);
             return Ok();
         }
-        
+        [HttpPut]
+        public IHttpActionResult UpdateAddress(int id,string ad)
+        {
+            urepository.EditShippingAddress(id, ad);
+            return Ok();
+        }
         
     }
 }
